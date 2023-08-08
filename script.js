@@ -3,7 +3,7 @@ let maximumNumber = 169;
 let minimumNumber = 1;
 let randomNumber = Math.floor(Math.random() * maximumNumber) + minimumNumber;
 
-
+let explanation =  document.querySelector(".explanation");
 let guesses = document.querySelector(".guesses");
 let lastResult = document.querySelector(".lastResult");
 let remainingGuesses = document.querySelector(".remainingGuesses");
@@ -17,6 +17,8 @@ let guessCount = 1;
 let resetButton;
 
 guessField.focus();
+
+explanation.textContent = `Tu choisis un nombre entre ${minimumNumber} et ${maximumNumber} et si tu choisis le bon tu gagnes un ticket restau, glhf.`;
 
 function checkGuess() {
     let userGuess = Number(guessField.value);
