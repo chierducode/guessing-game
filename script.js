@@ -45,6 +45,11 @@ function checkGuess() {
 }
 
 guessSubmit.addEventListener("click", checkGuess);
+guessField.addEventListener("keydown", event => {
+    if (event.keyCode === 13) {
+        checkGuess();
+    }
+});
 
 function setGameOver() {
     guessField.disabled = true;
