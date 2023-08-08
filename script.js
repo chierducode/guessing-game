@@ -3,6 +3,7 @@ let randomNumber = Math.floor(Math.random() * 100) + 1;
 
 let guesses = document.querySelector(".guesses");
 let lastResult = document.querySelector(".lastResult");
+let reject = document.querySelector(".reject");
 let lowOrHi = document.querySelector(".lowOrHi");
 
 let guessSubmit = document.querySelector(".guessSubmit");
@@ -15,6 +16,16 @@ guessField.focus();
 
 function checkGuess() {
     let userGuess = Number(guessField.value);
+
+    if (userGuess > 100 || userGuess < 1) {
+        rejectGuess();
+        lastResult.textContent = null;
+        lastResult.backgroundColor = null;
+        return;
+    } else {
+        removeReject();
+    }
+
     if (guessCount === 1) {
         guesses.textContent = "Propositions précédentes : ";
     }
@@ -50,6 +61,16 @@ guessField.addEventListener("keydown", event => {
         checkGuess();
     }
 });
+
+function rejectGuess() {
+    reject.textContent = "Le nombre ne peut pas être supérieure à 100 (pui100) ou inférieur à 1";
+    reject.style.backgroundColor = "orange";
+
+}
+
+function removeReject() {
+    reject.textContent = null;
+}
 
 function setGameOver() {
     guessField.disabled = true;
