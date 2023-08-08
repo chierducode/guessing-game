@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <title>Nombre deviner jeu</title>
+  </head>
+
+  <body>
+    <h1>Nombre deviner jeu</h1>
+
+    <p>Tu choisis un nombre entre 1 et 100 et si tu choisis le bon tu gagnes un ticket restau, glhf.</p>
+
+    <div class="form">
+      <label for="guessField">Rentre une réponse: </label>
+      <input type="number" min="1" max="100" required id="guessField" class="guessField">
+      <input type="submit" value="No homo" class="guessSubmit">
+    </div>
+
+    <div class="resultParas">
+      <p class="guesses"></p>
+      <p class="lastResult"></p>
+      <p class="lowOrHi"></p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

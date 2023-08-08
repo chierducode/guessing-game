@@ -1,0 +1,31 @@
+html {
+    font-family: sans-serif;
+  }
+
+input {
+    background-color:lightgrey;
+    color:black;
+    font-family: Source Code Pro; 
+}
+
+body {
+    width: 50%;
+    max-width: 800px;
+    min-width: 480px;
+    margin: 0 auto;
+    background-color:rgb(20, 68, 70);
+    color:rgb(223, 223, 223);
+    font-family: Source Code Pro; 
+    text-align:center;
+}
+
+
+  
+.form input[type="number"] {
+    width: 200px;
+}
+
+.lastResult {
+    color: white;
+    padding: 3px;
+}
