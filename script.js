@@ -1,5 +1,8 @@
+let maximumGuess = 15;
+let maximumNumber = 169;
+let minimumNumber = 1;
+let randomNumber = Math.floor(Math.random() * maximumNumber) + minimumNumber;
 
-let randomNumber = Math.floor(Math.random() * 100) + 1;
 
 let guesses = document.querySelector(".guesses");
 let lastResult = document.querySelector(".lastResult");
@@ -18,7 +21,7 @@ guessField.focus();
 function checkGuess() {
     let userGuess = Number(guessField.value);
 
-    if (userGuess > 100 || userGuess < 1) {
+    if (userGuess > maximumNumber || userGuess < minimumNumber) {
         rejectGuess();
         lastResult.textContent = null;
         lastResult.backgroundColor = null;
@@ -27,7 +30,7 @@ function checkGuess() {
         removeReject();
     }
 
-    if (guessCount === 1) {
+    if (guessCount === maximumGuess) {
         guesses.textContent = "Propositions précédentes : ";
     }
     guesses.textContent += userGuess + " ";
@@ -37,8 +40,12 @@ function checkGuess() {
         lastResult.style.backgroundColor = "green";
         lowOrHi.textContent = "";
         setGameOver(); 
-    } else if (guessCount === 10) {
+    } else if (guessCount === maximumGuess) {
         lastResult.textContent = "loupé, retente ta chance plus tard mon jeune pucix.";
+        remainingGuesses.textContent = null;
+        lowOrHi.textContent = null;
+        guesses.textContent = null;
+
         setGameOver();
     } else {
         lastResult.textContent = "Faux";
@@ -49,7 +56,7 @@ function checkGuess() {
             lowOrHi.textContent = "Le nombre saisi est trop grand!";
         }
 
-        remainingGuesses.textContent = "Nombre d'essais : " + guessCount + "/10";
+        remainingGuesses.textContent = "Nombre d'essais : " + guessCount + "/" + maximumGuess ;
     }
 
     guessCount++;
@@ -66,7 +73,7 @@ guessField.addEventListener("keydown", event => {
 });
 
 function rejectGuess() {
-    reject.textContent = "Le nombre ne peut pas être supérieure à 100 (pui100) ou inférieur à 1";
+    reject.textContent = `Le nombre ne peut pas être supérieure à ${maximumNumber} ou inférieur à ${minimumNumber}`;
     reject.style.backgroundColor = "orange";
 
 }
@@ -100,5 +107,5 @@ function resetGame () {
 
     lastResult.style.backgroundColor = "white";
 
-    randomNumber = Math.floor(Math.random() * 100) + 1;
+    randomNumber = Math.floor(Math.random() * maximumNumber) + minimumNumber;
 }
