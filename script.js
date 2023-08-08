@@ -32,7 +32,7 @@ function checkGuess() {
         removeReject();
     }
 
-    if (guessCount === maximumGuess) {
+    if (guessCount === 1) {
         guesses.textContent = "Propositions précédentes : ";
     }
     guesses.textContent += userGuess + " ";
