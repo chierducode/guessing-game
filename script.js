@@ -3,6 +3,7 @@ let randomNumber = Math.floor(Math.random() * 100) + 1;
 
 let guesses = document.querySelector(".guesses");
 let lastResult = document.querySelector(".lastResult");
+let remainingGuesses = document.querySelector(".remainingGuesses");
 let reject = document.querySelector(".reject");
 let lowOrHi = document.querySelector(".lowOrHi");
 
@@ -47,6 +48,8 @@ function checkGuess() {
         } else if (userGuess > randomNumber) {
             lowOrHi.textContent = "Le nombre saisi est trop grand!";
         }
+
+        remainingGuesses.textContent = "Nombre d'essais : " + guessCount + "/10";
     }
 
     guessCount++;
