@@ -1,6 +1,7 @@
 const EASY_MODE = 10;
 const NORMAL_MODE = 7;
 const HARDCORE_MODE = 4;
+const CUSTOM_MODE = 6;
 const DEFAULT_MIN_NUMBER = 1;
 const DEFAULT_MAX_NUMBER = 100;
 
@@ -24,9 +25,11 @@ let currentDifficulty = document.querySelector(".currentdifficulty");
 let easymodebtn = document.querySelector(".easymode");
 let normalmodebtn = document.querySelector(".normalmode");
 let hardcoremodebtn = document.querySelector(".hardcoremode");
+let custommodebtn = document.querySelector(".custommode");
 let user_min_number = document.querySelector(".user_choice_minimum_number");
 let user_max_number = document.querySelector(".user_choice_maximum_number");
 let user_number_confirm_btn = document.querySelector(".user_number_confirm");
+let customrangenumber = document.querySelector(".customrangenumber");
 
 let guessSubmit = document.querySelector(".guessSubmit");
 let guessField = document.querySelector(".guessField");
@@ -34,7 +37,7 @@ let guessField = document.querySelector(".guessField");
 let guessCount = 1;
 let resetButton;
 
-showDifficulty();
+showDifficulty(NORMAL_MODE);
 updateExplanation();
 
 guessField.focus();
@@ -42,9 +45,21 @@ guessField.focus();
 easymodebtn.textContent = `easy mode : ${EASY_MODE} essais`;
 normalmodebtn.textContent = `normal mode : ${NORMAL_MODE} essais`;
 hardcoremodebtn.textContent = `hardcore mode : ${HARDCORE_MODE} essais`;
+custommodebtn.textContent = `custom mode : ${CUSTOM_MODE} essais`;
 
-document.getElementById("settingsmenu").style.display = "none";
-document.getElementById("settingsbtn").addEventListener("click", event => {
+    customrangenumber.style.display = "none";
+    custommodebtn.addEventListener("click", event => {
+    var sw = customrangenumber;
+    if (sw.style.display === "none") {
+      sw.style.display = "block";
+    } else {
+      sw.style.display = "none";
+    }
+    console.log(sw.style.display);
+  });
+  
+    document.getElementById("settingsmenu").style.display = "none";
+    document.getElementById("settingsbtn").addEventListener("click", event => {
     var sw = document.getElementById("settingsmenu");
     if (sw.style.display === "none") {
       sw.style.display = "block";
@@ -54,19 +69,21 @@ document.getElementById("settingsbtn").addEventListener("click", event => {
     console.log(sw.style.display);
   });
 
-document.getElementById("easymode").addEventListener("click", event => {
-    maximumGuess = EASY_MODE;
-    changeDifficulty();
+easymode.addEventListener("click", event => {
+    changeDifficulty(EASY_MODE);
 });
 
-document.getElementById("normalmode").addEventListener("click", event => {
-    maximumGuess = NORMAL_MODE;
-    changeDifficulty();
+normalmode.addEventListener("click", event => {
+    changeDifficulty(NORMAL_MODE);
 });
 
-document.getElementById("hardcoremode").addEventListener("click", event => {
-    maximumGuess = HARDCORE_MODE;
-    changeDifficulty();
+hardcoremode.addEventListener("click", event => {
+    changeDifficulty(HARDCORE_MODE);
+
+});
+
+custommode.addEventListener("click", event => {
+    changeDifficulty(CUSTOM_MODE);
 
 });
 
@@ -90,34 +107,51 @@ function changerangeNumber() {
     removeResetButton();
 }
 
+customrangenumber.addEventListener("keydown", event => {
+    if (event.keyCode === 13) {
+        changemaximumGuess();
+    }
+});
+
+function changemaximumGuess() {
+    let user_guess = Number(customrangenumber.value);
+    if (user_guess < 1) return;
+    changeDifficulty(user_guess);
+    custommodebtn.textContent = `custom mode : ${user_guess} essais`;
+}
+
 
 function updateExplanation(){
     explanation.textContent = `Tu choisis un nombre entre ${minimumNumber} et ${maximumNumber} et si tu choisis le bon tu gagnes un ticket restau, glhf.`;
 }
 
 
-function changeDifficulty() {
+function changeDifficulty(guess) {
     remainingGuesses.textContent = null;
     lowOrHi.textContent = null;
     guesses.textContent = null;
     lastResult.textContent = null;
     resetGame();
-    showDifficulty();
+    showDifficulty(guess);
     removeResetButton();
 
 }
 
-function showDifficulty() {
-if ( maximumGuess === HARDCORE_MODE) {
-    currentDifficulty.textContent = "hardcore";
-    currentDifficulty.style.color = "#ff5252";
-} else if( maximumGuess === NORMAL_MODE) {
-    currentDifficulty.textContent = "normal";
-    currentDifficulty.style.color = "#ffc04c";
-} else if( maximumGuess === EASY_MODE) {
-    currentDifficulty.textContent = "easy";
-    currentDifficulty.style.color = "#7bc67b";
-}
+function showDifficulty(guess) {
+    maximumGuess = guess;
+    if ( maximumGuess === HARDCORE_MODE) {
+        currentDifficulty.textContent = "hardcore";
+        currentDifficulty.style.color = "#ff5252";
+    } else if( maximumGuess === NORMAL_MODE) {
+        currentDifficulty.textContent = "normal";
+        currentDifficulty.style.color = "#ffc04c";
+    } else if( maximumGuess === EASY_MODE) {
+        currentDifficulty.textContent = "easy";
+        currentDifficulty.style.color = "#7bc67b";
+    } else {
+        currentDifficulty.textContent = "custom";
+        currentDifficulty.style.color = "#9fc1ff";
+    }
 
 }
 
@@ -200,6 +234,7 @@ function setGameOver() {
     guessSubmit.disabled = true;
     resetButton = document.createElement("button");
     resetButton.textContent = "démarrer une nouvelle partie";
+    resetButton.style.fontFamily = "Source Code Pro";
     document.body.appendChild(resetButton);
     resetButton.addEventListener("click", event => {
         resetGame();
