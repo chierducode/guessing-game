@@ -3,12 +3,14 @@ let maximumNumber = 100;
 let minimumNumber = 1;
 let randomNumber = Math.floor(Math.random() * maximumNumber) + minimumNumber;
 
+
 let explanation =  document.querySelector(".explanation");
 let guesses = document.querySelector(".guesses");
 let lastResult = document.querySelector(".lastResult");
 let remainingGuesses = document.querySelector(".remainingGuesses");
 let reject = document.querySelector(".reject");
 let lowOrHi = document.querySelector(".lowOrHi");
+const canvas = document.querySelector('#confetti-canvas')      
 
 let guessSubmit = document.querySelector(".guessSubmit");
 let guessField = document.querySelector(".guessField");
@@ -38,9 +40,18 @@ function checkGuess() {
     guesses.textContent += userGuess + " ";
 
     if (userGuess === randomNumber) {
+
         lastResult.textContent = "Bravo, vous avez trouvé le nombre!";
         lastResult.style.backgroundColor = "green";
         lowOrHi.textContent = "";
+        var myConfetti = confetti.create(canvas, {
+            resize: true,
+            useWorker: true
+          });
+          myConfetti({
+            particleCount: 100,
+            spread: 160
+          });
         setGameOver(); 
     } else if (guessCount === maximumGuess) {
         lastResult.textContent = "loupé, retente ta chance plus tard mon jeune pucix.";
@@ -118,3 +129,4 @@ $(document).ready(function() {
        "min" : minimumNumber      
     });
 });
+
