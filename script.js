@@ -1,5 +1,5 @@
 let maximumGuess = 15;
-let maximumNumber = 169;
+let maximumNumber = Math.floor(Math.random() * 1000) + 1;
 let minimumNumber = 1;
 let randomNumber = Math.floor(Math.random() * maximumNumber) + minimumNumber;
 
@@ -114,7 +114,7 @@ function resetGame () {
 
 $(document).ready(function() {
     $("input").attr({
-       "max" : 169,        // substitute your own
-       "min" : minimumNumber          // values (or variables) here
+       "max" : maximumNumber, 
+       "min" : minimumNumber      
     });
 });
