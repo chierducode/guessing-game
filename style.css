@@ -43,10 +43,11 @@ body {
 
 .settings button {
     background-color:transparent;
-    filter:invert(100%);
     border-color:transparent;
-    margin:0px;
-    text-align:center;
+}
+
+.settings img {
+    filter:invert(100%);
 }
 
 .settings button:hover {
@@ -54,20 +55,22 @@ body {
 }
 
 .settingsmenu button {
-    background-color:white;
-    filter:invert(0%);
-    margin:0px;
+    position:relative; top:10px;
     text-align:center;
+    border-radius:5px;
 }
 
-.easymode {
-    color:#7bc67b;
+#easymode {
+    background-color:#518151;
+    color:#9fff9f;
 }
 
-.normalmode {
-    color:#ffc04c;
+#normalmode {
+    color:#ffd484;
+    background-color:#9d762f;
 }
 
-.hardcoremode {
-    color:#ff5252;
+#hardcoremode {
+    color:#ff9999;
+    background-color:#8a2b2b;
 }

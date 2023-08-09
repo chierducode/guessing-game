@@ -18,6 +18,9 @@ const canvas = document.querySelector('#confetti-canvas');
 let settings = document.querySelector(".settings");
 let settingsmenu = document.querySelector(".settingsmenu");
 let currentDifficulty = document.querySelector(".currentdifficulty");
+let easymodebtn = document.querySelector(".easymode")
+let normalmodebtn = document.querySelector(".normalmode")
+let hardcoremodebtn = document.querySelector(".hardcoremode")
 
 let guessSubmit = document.querySelector(".guessSubmit");
 let guessField = document.querySelector(".guessField");
@@ -30,6 +33,9 @@ showDifficulty();
 guessField.focus();
 
 explanation.textContent = `Tu choisis un nombre entre ${minimumNumber} et ${maximumNumber} et si tu choisis le bon tu gagnes un ticket restau, glhf.`;
+easymodebtn.textContent = `easy mode : ${EASY_MODE} essais`;
+normalmodebtn.textContent = `normal mode : ${NORMAL_MODE} essais`;
+hardcoremodebtn.textContent = `hardcore mode : ${HARDCORE_MODE} essais`;
 
 document.getElementById("settingsmenu").style.display = "none";
 document.getElementById("settings").addEventListener("click", event => {
