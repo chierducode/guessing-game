@@ -1,4 +1,8 @@
-let maximumGuess = 7;
+const EASY_MODE = 10;
+const NORMAL_MODE = 7;
+const HARDCORE_MODE = 4;
+
+let maximumGuess = NORMAL_MODE;
 let maximumNumber = 100;
 let minimumNumber = 1;
 let randomNumber = Math.floor(Math.random() * maximumNumber) + minimumNumber;
@@ -21,12 +25,14 @@ let guessField = document.querySelector(".guessField");
 let guessCount = 1;
 let resetButton;
 
+showDifficulty();
+
 guessField.focus();
 
 explanation.textContent = `Tu choisis un nombre entre ${minimumNumber} et ${maximumNumber} et si tu choisis le bon tu gagnes un ticket restau, glhf.`;
 
 document.getElementById("settingsmenu").style.display = "none";
-document.getElementById("settings").addEventListener("click", function toffi(){
+document.getElementById("settings").addEventListener("click", event => {
     var sw = document.getElementById("settingsmenu");
     if (sw.style.display === "none") {
       sw.style.display = "block";
@@ -36,18 +42,18 @@ document.getElementById("settings").addEventListener("click", function toffi(){
     console.log(sw.style.display);
   });
 
-document.getElementById("easymode").addEventListener("click", function toffi(){
-    maximumGuess = 10;
+document.getElementById("easymode").addEventListener("click", event => {
+    maximumGuess = EASY_MODE;
     changeDifficulty();
 });
 
-document.getElementById("normalmode").addEventListener("click", function toffi(){
-    maximumGuess = 7;
+document.getElementById("normalmode").addEventListener("click", event => {
+    maximumGuess = NORMAL_MODE;
     changeDifficulty();
 });
 
-document.getElementById("hardcoremode").addEventListener("click", function toffi(){
-    maximumGuess = 4;
+document.getElementById("hardcoremode").addEventListener("click", event => {
+    maximumGuess = HARDCORE_MODE;
     changeDifficulty();
 
 });
@@ -67,12 +73,15 @@ function changeDifficulty() {
 }
 
 function showDifficulty() {
-if ( maximumGuess === 4) {
+if ( maximumGuess === HARDCORE_MODE) {
     currentDifficulty.textContent = "hardcore";
-} else if( maximumGuess === 7) {
+    currentDifficulty.style.color = "#ff5252";
+} else if( maximumGuess === NORMAL_MODE) {
     currentDifficulty.textContent = "normal";
-} else if( maximumGuess === 10) {
+    currentDifficulty.style.color = "#ffc04c";
+} else if( maximumGuess === EASY_MODE) {
     currentDifficulty.textContent = "easy";
+    currentDifficulty.style.color = "#7bc67b";
 }
 
 }
