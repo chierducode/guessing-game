@@ -13,6 +13,7 @@
     <p class="explanation"></p>
 
     <div class="form">
+      <p class="currentdifficulty" id="currentdifficulty"></p>
       <label for="guessField">Rentre une réponse: </label>
       <input type="number" id="guessField" class="guessField">
       <input type="submit" value="Devine" class="guessSubmit">
@@ -25,6 +26,18 @@
       <p class="lastResult"></p>
       <p class="reject"></p>
       <p class="lowOrHi"></p>
+      <div class="settings" id="settings">
+        <button><img
+        src="https://cdn-icons-png.flaticon.com/512/2099/2099058.png"
+        alt="settings"
+        width="20"
+        /></button>
+        <div class="settingsmenu" id="settingsmenu">
+          <button class="easymode" id="easymode">easy mode : 10 tries</button>
+          <button class="normalmode" id="normalmode">normal mode : 7 tries</button>
+          <button class="hardcoremode" id="hardcoremode">hardcore mode : 4 tries</button>
+        </div>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script type="text/javascript"></script>

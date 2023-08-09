@@ -1,4 +1,4 @@
-let maximumGuess = 6;
+let maximumGuess = 7;
 let maximumNumber = 100;
 let minimumNumber = 1;
 let randomNumber = Math.floor(Math.random() * maximumNumber) + minimumNumber;
@@ -10,7 +10,10 @@ let lastResult = document.querySelector(".lastResult");
 let remainingGuesses = document.querySelector(".remainingGuesses");
 let reject = document.querySelector(".reject");
 let lowOrHi = document.querySelector(".lowOrHi");
-const canvas = document.querySelector('#confetti-canvas')      
+const canvas = document.querySelector('#confetti-canvas');
+let settings = document.querySelector(".settings");
+let settingsmenu = document.querySelector(".settingsmenu");
+let currentDifficulty = document.querySelector(".currentdifficulty");
 
 let guessSubmit = document.querySelector(".guessSubmit");
 let guessField = document.querySelector(".guessField");
@@ -21,6 +24,59 @@ let resetButton;
 guessField.focus();
 
 explanation.textContent = `Tu choisis un nombre entre ${minimumNumber} et ${maximumNumber} et si tu choisis le bon tu gagnes un ticket restau, glhf.`;
+
+document.getElementById("settingsmenu").style.display = "none";
+document.getElementById("settings").addEventListener("click", function toffi(){
+    var sw = document.getElementById("settingsmenu");
+    if (sw.style.display === "none") {
+      sw.style.display = "block";
+    } else {
+      sw.style.display = "none";
+    }
+    console.log(sw.style.display);
+  });
+
+document.getElementById("easymode").addEventListener("click", function toffi(){
+    maximumGuess = 10;
+    changeDifficulty();
+});
+
+document.getElementById("normalmode").addEventListener("click", function toffi(){
+    maximumGuess = 7;
+    changeDifficulty();
+});
+
+document.getElementById("hardcoremode").addEventListener("click", function toffi(){
+    maximumGuess = 4;
+    changeDifficulty();
+
+});
+
+function changeDifficulty() {
+    remainingGuesses.textContent = null;
+    lowOrHi.textContent = null;
+    guesses.textContent = null;
+    lastResult.textContent = null;
+    resetGame();
+    showDifficulty();
+    if (resetButton !== undefined){
+        removeResetButton();
+    }
+
+
+}
+
+function showDifficulty() {
+if ( maximumGuess === 4) {
+    currentDifficulty.textContent = "hardcore";
+} else if( maximumGuess === 7) {
+    currentDifficulty.textContent = "normal";
+} else if( maximumGuess === 10) {
+    currentDifficulty.textContent = "easy";
+}
+
+}
+
 
 function checkGuess() {
     let userGuess = Number(guessField.value);
@@ -101,7 +157,14 @@ function setGameOver() {
     resetButton = document.createElement("button");
     resetButton.textContent = "démarrer une nouvelle partie";
     document.body.appendChild(resetButton);
-    resetButton.addEventListener("click", resetGame);
+    resetButton.addEventListener("click", event => {
+        resetGame();
+        removeResetButton();
+      });
+}
+
+function removeResetButton() {
+    resetButton.parentNode.removeChild(resetButton);
 }
 
 function resetGame () {
@@ -110,8 +173,6 @@ function resetGame () {
     for (let i = 0; i < resetParas.length; i++) {
         resetParas[i].textContent = "";
     }
-
-    resetButton.parentNode.removeChild(resetButton);
 
     guessField.disabled = false;
     guessSubmit.disabled = false;
