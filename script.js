@@ -71,14 +71,17 @@ custommodebtn.textContent = `custom mode : ${CUSTOM_MODE} essais`;
 
 easymode.addEventListener("click", event => {
     changeDifficulty(EASY_MODE);
+    updateExplanation();
 });
 
 normalmode.addEventListener("click", event => {
     changeDifficulty(NORMAL_MODE);
+    updateExplanation();
 });
 
 hardcoremode.addEventListener("click", event => {
     changeDifficulty(HARDCORE_MODE);
+    updateExplanation();
 
 });
 
@@ -122,7 +125,7 @@ function changemaximumGuess() {
 
 
 function updateExplanation(){
-    explanation.textContent = `Tu choisis un nombre entre ${minimumNumber} et ${maximumNumber} et si tu choisis le bon tu gagnes un ticket restau, glhf.`;
+    explanation.textContent = `Tu choisis un nombre entre ${minimumNumber} et ${maximumNumber}, tu as ${maximumGuess} essais et si tu trouves le bon nombre, gros gg. glhf.`;
 }
 
 

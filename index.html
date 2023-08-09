@@ -4,12 +4,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="icon" type="image/png" href="./imagelib/guessinggamelogo.png"/>
     <title>NOMBRE DEVINER JEU</title>
   </head>
 
   <body>
     <h1>NOMBRE DEVINER JEU</h1>
-
+    <img class="logo"
+    src="imagelib/guessinggamelogo.png"
+    width="48"
+    height="48"
+    />
     <p class="explanation"></p>
 
     <div class="form">
@@ -32,10 +37,10 @@
         width="20"
         /></button>
         <div class="settingsmenu" id="settingsmenu">
+          <button class="custommode" id="custommode"></button>
           <button class="easymode" id="easymode"></button>
           <button class="normalmode" id="normalmode"></button>
-          <button class="hardcoremode" id="hardcoremode"></button><br>
-          <button class="custommode" id="custommode"></button><br>
+          <button class="hardcoremode" id="hardcoremode"></button>
           <input type="number" class="customrangenumber" id="customrangenumber"/>
           <p><br></p>
           <input type="number" class="user_choice_minimum_number" id="user_choice_minimum_number" placeholder="min..."/>
@@ -49,4 +54,7 @@
     <script type="text/javascript"></script>
     <script src="script.js"></script>
   </body>
+  <footer>
+    <p>ça crunch fort © | chierducode à son prime</p>
+  </footer>
 </html>
