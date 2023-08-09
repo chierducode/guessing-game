@@ -111,3 +111,10 @@ function resetGame () {
 
     randomNumber = Math.floor(Math.random() * maximumNumber) + minimumNumber;
 }
+
+$(document).ready(function() {
+    $("input").attr({
+       "max" : 169,        // substitute your own
+       "min" : minimumNumber          // values (or variables) here
+    });
+});
