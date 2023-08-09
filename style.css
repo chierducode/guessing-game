@@ -6,7 +6,7 @@ input {
     background-color:lightgrey;
     color:black;
     font-family: Source Code Pro; 
-    border-color:rgb(25, 57, 66)
+
 }
 
 body {
@@ -17,15 +17,9 @@ body {
     background-color:rgb(37, 57, 66);
     color:white;
     font-family: Source Code Pro; 
+    letter-spacing:-1px;
     text-align:center;
 }
-
-
-  
-.form input[type="number"] {
-    width: 200px;
-}
-
 .lastResult {
     color: white;
 
@@ -41,7 +35,7 @@ body {
   pointer-events: none;
 }
 
-.settings button {
+.settings button:not(.user_number_confirm) {
     background-color:transparent;
     border-color:transparent;
 }
@@ -54,7 +48,7 @@ body {
     cursor:pointer;
 }
 
-.settingsmenu button {
+.settingsmenu button:not(.user_number_confirm) {
     position:relative; top:10px;
     text-align:center;
     border-radius:5px;
@@ -63,14 +57,27 @@ body {
 #easymode {
     background-color:#518151;
     color:#9fff9f;
+    font-family: Source Code Pro;
 }
 
 #normalmode {
     color:#ffd484;
     background-color:#9d762f;
+    font-family: Source Code Pro;
 }
 
 #hardcoremode {
     color:#ff9999;
     background-color:#8a2b2b;
+    font-family: Source Code Pro;
+}
+
+#guessField {
+    border-radius:9px;
+    width:200px;
+}
+
+.user_number_confirm {
+    display:inline;
+    font-family: Source Code Pro;
 }

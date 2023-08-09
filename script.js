@@ -1,10 +1,12 @@
 const EASY_MODE = 10;
 const NORMAL_MODE = 7;
 const HARDCORE_MODE = 4;
+const DEFAULT_MIN_NUMBER = 1;
+const DEFAULT_MAX_NUMBER = 100;
 
 let maximumGuess = NORMAL_MODE;
-let maximumNumber = 100;
-let minimumNumber = 1;
+let maximumNumber = DEFAULT_MAX_NUMBER;
+let minimumNumber = DEFAULT_MIN_NUMBER;
 let randomNumber = Math.floor(Math.random() * maximumNumber) + minimumNumber;
 
 
@@ -16,11 +18,15 @@ let reject = document.querySelector(".reject");
 let lowOrHi = document.querySelector(".lowOrHi");
 const canvas = document.querySelector('#confetti-canvas');
 let settings = document.querySelector(".settings");
+let settingsbtn = document.querySelector(".settingsbtn")
 let settingsmenu = document.querySelector(".settingsmenu");
 let currentDifficulty = document.querySelector(".currentdifficulty");
-let easymodebtn = document.querySelector(".easymode")
-let normalmodebtn = document.querySelector(".normalmode")
-let hardcoremodebtn = document.querySelector(".hardcoremode")
+let easymodebtn = document.querySelector(".easymode");
+let normalmodebtn = document.querySelector(".normalmode");
+let hardcoremodebtn = document.querySelector(".hardcoremode");
+let user_min_number = document.querySelector(".user_choice_minimum_number");
+let user_max_number = document.querySelector(".user_choice_maximum_number");
+let user_number_confirm_btn = document.querySelector(".user_number_confirm");
 
 let guessSubmit = document.querySelector(".guessSubmit");
 let guessField = document.querySelector(".guessField");
@@ -29,16 +35,16 @@ let guessCount = 1;
 let resetButton;
 
 showDifficulty();
+updateExplanation();
 
 guessField.focus();
 
-explanation.textContent = `Tu choisis un nombre entre ${minimumNumber} et ${maximumNumber} et si tu choisis le bon tu gagnes un ticket restau, glhf.`;
 easymodebtn.textContent = `easy mode : ${EASY_MODE} essais`;
 normalmodebtn.textContent = `normal mode : ${NORMAL_MODE} essais`;
 hardcoremodebtn.textContent = `hardcore mode : ${HARDCORE_MODE} essais`;
 
 document.getElementById("settingsmenu").style.display = "none";
-document.getElementById("settings").addEventListener("click", event => {
+document.getElementById("settingsbtn").addEventListener("click", event => {
     var sw = document.getElementById("settingsmenu");
     if (sw.style.display === "none") {
       sw.style.display = "block";
@@ -64,6 +70,32 @@ document.getElementById("hardcoremode").addEventListener("click", event => {
 
 });
 
+user_number_confirm_btn.addEventListener("click", changerangeNumber);
+
+function changerangeNumber() {
+    let minvalue = Number(user_min_number.value);
+    let maxvalue = Number(user_max_number.value);
+    if (minvalue >= maxvalue ) {
+        return;
+    }
+
+    if (minvalue < 1) {
+        return;
+    }
+
+    maximumNumber = maxvalue;
+    minimumNumber = minvalue;
+    resetGame();
+    updateExplanation();
+    removeResetButton();
+}
+
+
+function updateExplanation(){
+    explanation.textContent = `Tu choisis un nombre entre ${minimumNumber} et ${maximumNumber} et si tu choisis le bon tu gagnes un ticket restau, glhf.`;
+}
+
+
 function changeDifficulty() {
     remainingGuesses.textContent = null;
     lowOrHi.textContent = null;
@@ -71,10 +103,7 @@ function changeDifficulty() {
     lastResult.textContent = null;
     resetGame();
     showDifficulty();
-    if (resetButton !== undefined){
-        removeResetButton();
-    }
-
+    removeResetButton();
 
 }
 
@@ -125,7 +154,7 @@ function checkGuess() {
           });
         setGameOver(); 
     } else if (guessCount === maximumGuess) {
-        lastResult.textContent = "loupé, retente ta chance plus tard mon jeune pucix.";
+        lastResult.textContent = `loupé, le chiffre gagnant était ${randomNumber}. retente ta chance plus tard mon jeune pucix.`;
         remainingGuesses.textContent = null;
         lowOrHi.textContent = null;
         guesses.textContent = null;
@@ -179,7 +208,11 @@ function setGameOver() {
 }
 
 function removeResetButton() {
+    if (resetButton === undefined) {
+        return;
+    }
     resetButton.parentNode.removeChild(resetButton);
+    resetButton = undefined;      
 }
 
 function resetGame () {
