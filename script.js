@@ -1,5 +1,5 @@
-let maximumGuess = 15;
-let maximumNumber = Math.floor(Math.random() * 1000) + 1;
+let maximumGuess = 5;
+let maximumNumber = 100;
 let minimumNumber = 1;
 let randomNumber = Math.floor(Math.random() * maximumNumber) + minimumNumber;
 
