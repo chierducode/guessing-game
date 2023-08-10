@@ -1,7 +1,7 @@
 const EASY_MODE = 10;
 const NORMAL_MODE = 7;
 const HARDCORE_MODE = 4;
-const CUSTOM_MODE = 6;
+const CUSTOM_MODE = 2;
 const DEFAULT_MIN_NUMBER = 1;
 const DEFAULT_MAX_NUMBER = 100;
 
@@ -88,7 +88,7 @@ hardcoremode.addEventListener("click", event => {
 });
 
 custommode.addEventListener("click", event => {
-    changeDifficulty(CUSTOM_MODE);
+    updateExplanation();
 
 });
 
@@ -122,17 +122,27 @@ customrangenumber.addEventListener("keydown", event => {
 
 increase_guess.addEventListener("click", increasemaximumGuess);
 function increasemaximumGuess() {
+    if (guessCount > 1) {
+        resetGame();
+    }
     maximumGuess = maximumGuess + 1;
+    currentDifficulty.textContent = "custom";
+    currentDifficulty.style.color = "#9fc1ff";
     updateExplanation();
     updateCustomMode();
 }
 
 decrease_guess.addEventListener("click", decreasemaximumGuess);
 function decreasemaximumGuess() {
+    if (guessCount > 1) {
+        resetGame();
+    }
     if (maximumGuess < 1) {
         return;
     }
     maximumGuess = maximumGuess - 1;
+    currentDifficulty.textContent = "custom";
+    currentDifficulty.style.color = "#9fc1ff";
     updateExplanation();
     updateCustomMode();
 }
