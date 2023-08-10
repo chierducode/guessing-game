@@ -129,10 +129,10 @@ function increasemaximumGuess() {
 
 decrease_guess.addEventListener("click", decreasemaximumGuess);
 function decreasemaximumGuess() {
-    maximumGuess = maximumGuess - 1;
     if (maximumGuess < 1) {
         return;
     }
+    maximumGuess = maximumGuess - 1;
     updateExplanation();
     updateCustomMode();
 }
