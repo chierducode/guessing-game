@@ -144,3 +144,45 @@ body {
 #decrease_guess:active {
     color:#516581;
 }
+
+.guessField {
+    border-radius:20px;
+    background-color:rgb(239, 239, 239);
+    margin-top:10px;
+    border-color:#516581;
+    border-width:3px;
+}
+
+.guessSubmit {
+    border-radius:20px;
+    background-color:rgb(255, 255, 255);
+    margin-top:10px;
+    border-color:#516581;
+    border-width:3px;
+}
+
+.guessSubmit:hover {
+    animation: tilt-shaking 0.3s infinite;
+    cursor:pointer;
+}
+
+.user_choice_minimum_number {
+margin:3px;
+}
+
+.user_choice_maximum_number {
+margin:3px;
+}
+
+.user_number_confirm {
+    border-radius:20px;
+    background-color:rgb(255, 255, 255);
+    margin-top:10px;
+    border-color:#516581;
+    border-width:3px;
+}
+
+.user_number_confirm:hover {
+    animation: tilt-shaking 0.3s infinite;
+    cursor:pointer;
+}
