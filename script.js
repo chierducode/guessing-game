@@ -30,6 +30,8 @@ let user_min_number = document.querySelector(".user_choice_minimum_number");
 let user_max_number = document.querySelector(".user_choice_maximum_number");
 let user_number_confirm_btn = document.querySelector(".user_number_confirm");
 let customrangenumber = document.querySelector(".customrangenumber");
+let increase_guess = document.querySelector(".increase_guess");
+let decrease_guess = document.querySelector(".decrease_guess");
 
 let guessSubmit = document.querySelector(".guessSubmit");
 let guessField = document.querySelector(".guessField");
@@ -39,13 +41,13 @@ let resetButton;
 
 showDifficulty(NORMAL_MODE);
 updateExplanation();
+updateCustomMode();
 
 guessField.focus();
 
 easymodebtn.textContent = `easy mode : ${EASY_MODE} essais`;
 normalmodebtn.textContent = `normal mode : ${NORMAL_MODE} essais`;
 hardcoremodebtn.textContent = `hardcore mode : ${HARDCORE_MODE} essais`;
-custommodebtn.textContent = `custom mode : ${CUSTOM_MODE} essais`;
 
     customrangenumber.style.display = "none";
     custommodebtn.addEventListener("click", event => {
@@ -116,11 +118,32 @@ customrangenumber.addEventListener("keydown", event => {
     }
 });
 
+increase_guess.addEventListener("click", increasemaximumGuess);
+function increasemaximumGuess() {
+    maximumGuess = maximumGuess + 1;
+    updateExplanation();
+    updateCustomMode();
+}
+
+decrease_guess.addEventListener("click", decreasemaximumGuess);
+function decreasemaximumGuess() {
+    maximumGuess = maximumGuess - 1;
+    if (maximumGuess < 1) {
+        return;
+    }
+    updateExplanation();
+    updateCustomMode();
+}
+
 function changemaximumGuess() {
     let user_guess = Number(customrangenumber.value);
     if (user_guess < 1) return;
     changeDifficulty(user_guess);
     custommodebtn.textContent = `custom mode : ${user_guess} essais`;
+}
+
+function updateCustomMode() {
+    custommodebtn.textContent = `custom mode : ${maximumGuess} essais`;
 }
 
 

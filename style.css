@@ -126,3 +126,21 @@ body {
     display:none;
   }
 
+#increase_guess {
+    color:lightgrey;
+    font-size:150%;
+}
+
+#decrease_guess {
+    color:lightgrey;
+    font-size:150%;
+}
+
+#increase_guess:active {
+    color:#516581;
+}
+
+
+#decrease_guess:active {
+    color:#516581;
+}
