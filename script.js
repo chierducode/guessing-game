@@ -115,6 +115,8 @@ function changerangeNumber() {
 customrangenumber.addEventListener("keydown", event => {
     if (event.keyCode === 13) {
         changemaximumGuess();
+        updateExplanation();
+        updateCustomMode();
     }
 });
 
