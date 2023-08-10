@@ -117,3 +117,12 @@ body {
     position:fixed;bottom:0px;
     width:100%;
   }
+
+.easteregg:hover .mclovin  {
+    display:inline;
+  }
+
+  .mclovin {
+    display:none;
+  }
+
